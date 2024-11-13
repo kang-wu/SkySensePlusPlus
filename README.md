@@ -61,7 +61,7 @@ We evaluate our SkySense++ on 12 typical Earth Observation (EO) tasks across 7 d
 *\* for time-series data.*
 
 ## Code
-We will release the code and pretrain weights after company's open-source approval.
+We will release the code and pretraining weights after company's open-source approval.
 
 ## Acknowledgments
 - [antmmf](https://github.com/alipay/Ant-Multi-Modal-Framework)
