@@ -1,5 +1,4 @@
 # SkySense++ 
-## Description
 This repository is the official implementation of the paper "SkySense++: A Semantic-Enhanced Multi-Modal Remote Sensing Foundation Model for Earth Observation".
 
 ## 📢 Latest Updates
