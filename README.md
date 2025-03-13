@@ -2,12 +2,14 @@
 This repository is the official implementation of the paper "SkySense++: A Semantic-Enhanced Multi-Modal Remote Sensing Foundation Model for Earth Observation".
 
 ## 📢 Latest Updates
-🔥🔥🔥 Last Updated on 2024.11.13 🔥🔥🔥
-- updated pretrain and evaluation data
+🔥🔥🔥 Last Updated on 2024.3.12 🔥🔥🔥
+- [2025.3.12] updated sentinel-1 images and labels of JL-16 dataset 
+- [2025.3.9] updated pretrain and evaluation data
+- [2024.11.13]updated pretrain and evaluation data
 
 ## Pretrain Data
 ### RS-Semantic Dataset
-We conduct semantic-enhanced pretraining on the RS-Semantic dataset, which consists of 13 datasets with pixel-level annotations. Below are the specifics of these datasets.
+We conduct semantic-enhanced pretraining on the RS-Semantic dataset, which consists of 13 datasets with pixel-level annotations. Below are the specifics of these datasets. (also see in [Zenodo](https://zenodo.org/records/15010418).
 | Dataset                          | Modalities       | GSD(m) | Size                  | Categories          | Download Link                                                                 |
 |----------------------------------|------------------|--------|-----------------------|---------------------|-------------------------------------------------------------------------------|
 | Five Billion Pixels              | Gaofen-2         | 4      | 6800x7200             | 24                  | [Download](https://x-ytong.github.io/project/Five-Billion-Pixels.html)                   |
@@ -31,7 +33,7 @@ We conduct semantic-enhanced pretraining on the RS-Semantic dataset, which consi
 | S2-naip                          | NAIP             | 1      | 512x512               | 32                  | [Download](https://huggingface.co/datasets/allenai/s2-naip)                               |
 |                                  | Sentinel-2*      | 10     | 64x64                 |                     |                                                                               |
 |                                  | Sentinel-1*      | 10     | 64x64                 |                     |                                                                               |
-| JL-16                            | Jilin-1          | 0.72   | 512x512               | 16                  | [Download]()                                 |
+| JL-16                            | Jilin-1          | 0.72   | 512x512               | 16                  | [Download](https://zenodo.org/records/15010418)                                 |
 |                                  | Sentinel-1*      | 10     | 40x40                 |                     |                                                                               |
 
 *\* for time-series data.*
