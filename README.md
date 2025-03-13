@@ -3,13 +3,13 @@ This repository is the official implementation of the paper "SkySense++: A Seman
 
 ## 📢 Latest Updates
 🔥🔥🔥 Last Updated on 2024.3.12 🔥🔥🔥
-- [2025.3.12] updated sentinel-1 images and labels of JL-16 dataset 
-- [2025.3.9] updated pretrain and evaluation data
+- [2025.3.12] updated sentinel-1 images and labels of JL-16 dataset  in [Download](https://zenodo.org/records/15010418) 
+- [2025.3.9] create repo in [Zenodo](https://zenodo.org/records/15010418), datasets are uploading.
 - [2024.11.13]updated pretrain and evaluation data
 
 ## Pretrain Data
 ### RS-Semantic Dataset
-We conduct semantic-enhanced pretraining on the RS-Semantic dataset, which consists of 13 datasets with pixel-level annotations. Below are the specifics of these datasets. (also see in [Zenodo](https://zenodo.org/records/15010418).
+We conduct semantic-enhanced pretraining on the RS-Semantic dataset, which consists of 13 datasets with pixel-level annotations. Below are the specifics of these datasets. (also see in [Zenodo](https://zenodo.org/records/15010418)).
 | Dataset                          | Modalities       | GSD(m) | Size                  | Categories          | Download Link                                                                 |
 |----------------------------------|------------------|--------|-----------------------|---------------------|-------------------------------------------------------------------------------|
 | Five Billion Pixels              | Gaofen-2         | 4      | 6800x7200             | 24                  | [Download](https://x-ytong.github.io/project/Five-Billion-Pixels.html)                   |
