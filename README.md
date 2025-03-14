@@ -2,7 +2,7 @@
 This repository is the official implementation of the paper "SkySense++: A Semantic-Enhanced Multi-Modal Remote Sensing Foundation Model for Earth Observation".
 
 ## 📢 Latest Updates
-🔥🔥🔥 Last Updated on 2024.3.12 🔥🔥🔥
+🔥🔥🔥 Last Updated on 2024.3.14 🔥🔥🔥
 - [2025.3.14] updated optical images of JL-16 dataset in [Huggingface](https://huggingface.co/datasets/KKKKKKang/JL-16)
 - [2025.3.12] updated sentinel-1 images and labels of JL-16 dataset  in [Zenodo](https://zenodo.org/records/15010418) 
 - [2025.3.9] created repo in [Zenodo](https://zenodo.org/records/15010418), datasets are uploading.
