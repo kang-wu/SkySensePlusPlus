@@ -6,7 +6,7 @@ This repository is the official implementation of the paper "SkySense++: A Seman
 
 🔥🔥🔥 Last Updated on 2025.03.23 🔥🔥🔥
 
-- [2025.03.23] updated code for data preprocessing, pretraining, and application.
+- [2025.03.23] We have obtained the approval by the open-source committee of the Company. We have updated code for data preprocessing, pretraining, and application.
 - [2025.03.14] updated optical images of JL-16 dataset in [Huggingface](https://huggingface.co/datasets/KKKKKKang/JL-16).
 - [2025.03.12] updated sentinel-1 images and labels of JL-16 dataset  in [Zenodo](https://zenodo.org/records/15010418).
 - [2025.03.09] created repo in [Zenodo](https://zenodo.org/records/15010418), datasets are uploading.
