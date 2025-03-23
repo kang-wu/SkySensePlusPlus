@@ -1,0 +1,171 @@
+task_attributes:
+  segmentation:
+    dataset_attributes:
+      few_shot_flood_segmentation:
+        data_root_dir: 'eval_datasets/flood3i'
+        data_txt: 'eval_datasets/flood3i/val.txt'
+        img_dir: 'eval_datasets/flood3i/images'
+        tgt_dir: 'eval_datasets/flood3i/targets'
+        num_shot: 1
+        seq_len: 1
+        npz_key: 'arr_0'
+        image_size:
+          hr: (512, 512)
+          s2: (16, 16)
+          s1: (16, 16)
+          anno: (512, 512)
+        mim:
+          input_size: (1024, 512)
+          patch_size: 128
+          mask_ratio: 0.5
+
+model_attributes:
+  SkySensePP:
+    sources: ['hr', 's2', 's1']
+    use_glbank: False
+    use_modal_vae: True
+    use_ctpe: False
+    use_cls_token_uper_head: False 
+    upsacle_results: True
+    calendar_time: 365
+    vocabulary_size: 64
+    backbone_hr:
+      type: 'SwinTransformerV2MSL'
+      arch: 'huge'
+      use_attn: True
+      merge_stage: 2
+      vocabulary_size: 64
+      img_size: 224
+      patch_size: 4
+      in_channels: 3
+      window_size: 8
+      drop_rate: 0.
+      drop_path_rate: 0.2
+      out_indices: (0,1,2,3)
+      use_abs_pos_embed: False
+      interpolate_mode: 'bicubic'
+      with_cp: True
+      frozen_stages: -1
+      norm_eval: False
+      pad_small_map: False
+      pretrained_window_sizes: [0, 0, 0, 0]
+
+    backbone_s2:
+      type: 'VisionTransformerMSL'
+      img_size: (16, 16)
+      use_attn: False
+      merge_stage: 4
+      vocabulary_size: 64
+      patch_size: 4
+      in_channels: 10
+      embed_dims: 1024
+      num_layers: 24
+      num_heads: 16
+      mlp_ratio: 4
+      out_indices: (5,11,17,23)
+      qkv_bias: True
+      drop_rate: 0.
+      attn_drop_rate: 0.
+      drop_path_rate: 0.3
+      with_cls_token: False
+      output_cls_token: False
+      act_cfg:
+        type: 'GELU'
+      norm_cfg:
+        type: 'LN'
+        eps: 1e-6
+      with_cp: True
+      interpolate_mode: 'bicubic'
+    
+    head_s2:
+      type: 'UPHead'
+      in_dim: 1024
+      out_dim: 2816
+      up_scale: 4
+    
+    backbone_s1:
+      type: 'VisionTransformerMSL'
+      img_size: (16, 16)
+      use_attn: False
+      merge_stage: 4
+      vocabulary_size: 64
+      patch_size: 4
+      in_channels: 2
+      embed_dims: 1024
+      num_layers: 24
+      num_heads: 16
+      mlp_ratio: 4
+      out_indices: (5,11,17,23)
+      qkv_bias: True
+      drop_rate: 0.
+      attn_drop_rate: 0.
+      drop_path_rate: 0.3
+      with_cls_token: False
+      output_cls_token: False
+      act_cfg:
+        type: 'GELU'
+      norm_cfg:
+        type: 'LN'
+        eps: 1e-6
+      with_cp: True
+      interpolate_mode: 'bicubic'
+    
+    head_s1:
+      type: 'UPHead'
+      in_dim: 1024
+      out_dim: 2816
+      up_scale: 4
+
+    rec_head_hr:
+      type: 'UPerHead'
+      in_channels: [704, 704, 1408, 2816, 1024]
+      in_index: [0, 1, 2, 3, 4]
+      pool_scales: (1, 2, 3, 6)
+      channels: 512
+      dropout_ratio: 0.1
+      num_classes: 65
+      norm_cfg:
+        type: 'SyncBN'
+        requires_grad: true
+      align_corners: false
+    
+    necks:
+      type: 'TransformerEncoder'
+      input_dims: 2816
+      embed_dims: 1024
+      num_layers: 24
+      num_heads: 16
+      mlp_ratio: 4
+      qkv_bias: True
+      drop_rate: 0.
+      attn_drop_rate: 0.
+      drop_path_rate: 0.3
+      with_cls_token: True
+      output_cls_token: True
+      norm_cfg:
+        type: 'LN'
+      act_cfg:
+        type: 'GELU'
+      num_fcs: 2
+      norm_eval: False
+      with_cp: True
+
+    modality_vae:
+      type: 'ModalityCompletion'
+      input_shape_hr: [2816, 32, 16]
+      input_shape_s2: [2816, 32, 16]
+      input_shape_s1: [2816, 32, 16]
+      conv_dim: 256
+      z_dim: 256
+      n_codebook: 8192
+
+amp_attributes:
+  amp_escapes: Conv2d
+  opt_level: O1
+  init_scale: 1
+
+predictor_parameters:
+  predictor: 'OneshotPredictor'
+  replace_speedup_op: True
+  device: cuda
+  local_rank: 0

@@ -1,0 +1,9 @@
+.venv/
+.env
+**/*.pyc
+**/.pytest_cache
+search_data.json
+.idea
+*.zip
+*.jp2
+.ruff_cache

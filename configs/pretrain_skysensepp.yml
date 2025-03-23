@@ -1,0 +1,248 @@
+task_attributes:
+  segmentation:
+    dataset_attributes:
+      pretraining_loader:
+        data_root_dir: 'pretrain_datasets/'
+        train_json_path_list: ['dynamic-mm/dynamic-mm_train.json', 'pastis-mm/pastis-mm_train.json', 'vaihingen/vaihingen_train.json', 'deepglobe/deepglobe_train.json', 'potsdam/potsdam_train.json', 'fbp/fbp_train.json', 'loveda/loveda_train.json', 'isaid/isaid_train.json', 'jl16-mm/jl16-mm_train.json', 'flair-mm/flair-mm_train.json', 's2naip-mm/s2naip-mm_train.json', 'dfc20-mm/dfc20-mm_train.json', 'c2segab-mm/c2segab-mm_train.json']
+        val_json_path_list: ['dynamic-mm/dynamic-mm_val.json', 'pastis-mm/pastis-mm_val.json', 'vaihingen/vaihingen_val.json', 'deepglobe/deepglobe_val.json', 'potsdam/potsdam_val.json', 'fbp/fbp_val.json', 'loveda/loveda_val.json', 'isaid/isaid_val.json', 'jl16-mm/jl16-mm_val.json', 'flair-mm/flair-mm_val.json', 's2naip-mm/s2naip-mm_val.json', 'dfc20-mm/dfc20-mm_val.json', 'c2segab-mm/c2segab-mm_val.json']
+        use_multi_pairs: True
+        seq_len: 1
+        half_mask_ratio: 0.3
+        min_random_scale: 0.3
+        cls_repeat_cnt: 2000
+        image_size:
+          hr: (512, 512)
+          s2: (16, 16)
+          s1: (16, 16)
+          anno: (512, 512)
+        mim:
+          input_size: (1024, 512)
+          patch_size: 128
+          mask_ratio: 0.5
+
+model_attributes:
+  SkySensePP:
+    sources: ['hr', 's2', 's1']
+    use_modal_vae: True
+    use_ctpe: False
+    use_cls_token_uper_head: False 
+    upsacle_results: True
+    calendar_time: 365
+    vocabulary_size: 64
+    backbone_hr:
+      type: 'SwinTransformerV2MSL'
+      arch: 'huge'
+      use_attn: True
+      merge_stage: 2
+      vocabulary_size: 64
+      img_size: 224
+      patch_size: 4
+      in_channels: 3
+      window_size: 8
+      drop_rate: 0.
+      drop_path_rate: 0.2
+      out_indices: (0,1,2,3)
+      use_abs_pos_embed: False
+      interpolate_mode: 'bicubic'
+      with_cp: True
+      frozen_stages: -1
+      norm_eval: False
+      pad_small_map: False
+      pretrained_window_sizes: [0, 0, 0, 0]
+      init_cfg:
+        type: Pretrained
+        checkpoint: 'pretrain/skysense_model_backbone_hr.pth' 
+
+    backbone_s2:
+      type: 'VisionTransformerMSL'
+      img_size: (16, 16)
+      use_attn: False
+      merge_stage: 4
+      vocabulary_size: 64
+      patch_size: 4
+      in_channels: 10
+      embed_dims: 1024
+      num_layers: 24
+      num_heads: 16
+      mlp_ratio: 4
+      out_indices: (5,11,17,23)
+      qkv_bias: True
+      drop_rate: 0.
+      attn_drop_rate: 0.
+      drop_path_rate: 0.3
+      with_cls_token: False
+      output_cls_token: False
+      act_cfg:
+        type: 'GELU'
+      norm_cfg:
+        type: 'LN'
+        eps: 1e-6
+      with_cp: True
+      interpolate_mode: 'bicubic'
+      init_cfg:
+        type: Pretrained
+        checkpoint: 'pretrain/skysense_model_backbone_s2.pth'
+    
+    head_s2:
+      type: 'UPHead'
+      in_dim: 1024
+      out_dim: 2816 #2816
+      up_scale: 4
+      init_cfg:
+        type: Pretrained
+        checkpoint: 'pretrain/skysense_model_head_s2.pth'
+    
+    backbone_s1:
+      type: 'VisionTransformerMSL'
+      img_size: (16, 16)
+      use_attn: False
+      merge_stage: 4
+      vocabulary_size: 64
+      patch_size: 4
+      in_channels: 2
+      embed_dims: 1024
+      num_layers: 24
+      num_heads: 16
+      mlp_ratio: 4
+      out_indices: (5,11,17,23)
+      qkv_bias: True
+      drop_rate: 0.
+      attn_drop_rate: 0.
+      drop_path_rate: 0.3
+      with_cls_token: False
+      output_cls_token: False
+      act_cfg:
+        type: 'GELU'
+      norm_cfg:
+        type: 'LN'
+        eps: 1e-6
+      with_cp: True
+      interpolate_mode: 'bicubic'
+      init_cfg:
+        type: Pretrained
+        checkpoint: 'pretrain/skysense_model_backbone_s1.pth'
+    
+    head_s1:
+      type: 'UPHead'
+      in_dim: 1024
+      out_dim: 2816 #2816
+      up_scale: 4
+      init_cfg:
+        type: Pretrained
+        checkpoint: 'pretrain/skysense_model_head_s1.pth'
+
+    rec_head_hr:
+      type: 'UPerHead'
+      in_channels: [704, 704, 1408, 2816, 1024]
+      in_index: [0, 1, 2, 3, 4]
+      pool_scales: (1, 2, 3, 6)
+      channels: 512
+      dropout_ratio: 0.1
+      num_classes: 65
+      norm_cfg:
+        type: 'SyncBN'
+        requires_grad: true
+      align_corners: false
+
+    necks:
+      type: 'TransformerEncoder'
+      input_dims: 2816
+      embed_dims: 1024
+      num_layers: 24
+      num_heads: 16
+      mlp_ratio: 4
+      qkv_bias: True
+      drop_rate: 0.
+      attn_drop_rate: 0.
+      drop_path_rate: 0.3
+      with_cls_token: True
+      output_cls_token: True
+      norm_cfg:
+        type: 'LN'
+      act_cfg:
+        type: 'GELU'
+      num_fcs: 2
+      norm_eval: False
+      with_cp: True
+      init_cfg:
+        type: Pretrained
+        checkpoint: 'pretrain/skysense_model_fusion.pth'
+
+    modality_vae:
+      type: 'ModalityCompletion'
+      input_shape_hr: [2816, 32, 16]
+      input_shape_s2: [2816, 32, 16]
+      input_shape_s1: [2816, 32, 16]
+      conv_dim: 256
+      z_dim: 256
+      n_codebook: 8192
+
+    metrics:
+      - type: 'sem_metric'
+
+    losses: 
+      - type: 'RecLoss' 
+        params:
+          weight: 1.0
+          patch_size: 4
+          balance: True
+          use_all_patch: True
+          vocabulary_size: 64
+          feature_merged: True
+          pred_key: 'logits_hr'
+          mask_key: 'mask_hr'
+          target_key: 'mapped_targets'
+          use_bg: True
+
+      - type: 'ModalityVAELoss' 
+        params:
+          weight: 1.0
+      
+
+optimizer_attributes:
+  type: AdamW
+  params:
+    lr: 2e-04
+    betas: (0.9, 0.999)
+    weight_decay: 0.04
+
+lr_parameters:
+  layer_decay: 0.7
+  frozen_blocks: 12
+  frozen_fusion_blocks_start: 3
+
+training_parameters:
+  trainer: 'seg_trainer'
+  run_type: train
+  seed: 24042301
+  pin_memory: True
+  batch_size: 256
+  test_batch_size: 128
+  num_workers: 16
+  max_iterations: 30000
+  num_warmup_steps: 1000
+  log_interval: 50
+  snapshot_interval: 3000
+  cos_lr: False
+
+  clip_norm_mode: all
+  clip_gradients: true
+  max_grad_l2_norm: 5
+
+  enable_tf32: False
+  enable_amp: True
+  find_unused_parameters: True
+  synchronized_loss: True
+
+  static_graph: True
+  replace_speedup_op: True
+
+  ema: False
+
+  distributed_batch_sampler:
+    batch_size: 8
+
+amp_attributes:
+  amp_escapes: Conv2d
+  opt_level: O1
+  init_scale: 1
