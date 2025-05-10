@@ -278,4 +278,4 @@ This projects are mainly built on the following projects:
 
 ## License
 
-This project is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.en) and is intended solely for non-commercial research purposes.
+The codes of this project is licensed under Apache 2.0(https://www.apache.org/licenses/LICENSE-2.0.html).
