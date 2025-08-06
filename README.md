@@ -4,9 +4,9 @@ This repository is the official implementation of the paper "SkySense++: A Seman
 
 ## 📢 Latest Updates
 
-🔥🔥🔥 Last Updated on 2025.03.23 🔥🔥🔥
-
-- [2025.03.23] Obtained the approval by the open-source committee of the Company. Code for data preprocessing, pretraining, and application has been uploaded.
+🔥🔥🔥 Last Updated on 2025.08.04 🔥🔥🔥
+- [2025.08.04] Our work has been published in [*Nature Machine Intelligence*](https://www.nature.com/articles/s42256-025-01078-8). 
+- [2025.03.23] Code for data preprocessing, pretraining, and application has been uploaded.
 - [2025.03.14] updated optical images of JL-16 dataset in [Huggingface](https://huggingface.co/datasets/KKKKKKang/JL-16).
 - [2025.03.12] updated sentinel-1 images and labels of JL-16 dataset  in [Zenodo](https://zenodo.org/records/15010418).
 - [2025.03.09] created repo in [Zenodo](https://zenodo.org/records/15010418), datasets are uploading.
@@ -279,3 +279,43 @@ This projects are mainly built on the following projects:
 ## License
 
 The codes of this project is licensed under Apache 2.0(https://www.apache.org/licenses/LICENSE-2.0.html).
+
+## Citation
+If you find our repo useful, please consider giving a star and citation:
+
+```
+
+
+@article{wu2025semantic,
+  author       = {Wu, Kang and Zhang, Yingying and Ru, Lixiang and Dang, Bo and Lao, Jiangwei and Yu, Lei and Luo, Junwei and Zhu, Zifan and Sun, Yue and Zhang, Jiahao and Zhu, Qi and Wang, Jian and Yang, Ming and Chen, Jingdong and Zhang, Yongjun and Li, Yansheng},
+  title        = {A semantic‑enhanced multi‑modal remote sensing foundation model for Earth observation},
+  journal      = {Nature Machine Intelligence},
+  year         = {2025},
+  doi          = {10.1038/s42256-025-01078-8},
+  url          = {https://doi.org/10.1038/s42256-025-01078-8}
+}
+
+@inproceedings{guo2024skysense,
+    author    = {Guo, Xin and Lao, Jiangwei and Dang, Bo and Zhang, Yingying and Yu, Lei and Ru, Lixiang and Zhong, Liheng and Huang, Ziyuan and Wu, Kang and Hu, Dingxiang and He, Huimei and Wang, Jian and Chen, Jingdong and Yang, Ming and Zhang, Yongjun and Li, Yansheng},
+    title     = {SkySense: A Multi-Modal Remote Sensing Foundation Model Towards Universal Interpretation for Earth Observation Imagery},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2024},
+    pages     = {27672-27683}
+}
+
+@inproceedings{zhu2025skysenseo,
+  title={Skysense-o: Towards open-world remote sensing interpretation with vision-centric visual-language modeling},
+  author={Zhu, Qi and Lao, Jiangwei and Ji, Deyi and Luo, Junwei and Wu, Kang and Zhang, Yingying and Ru, Lixiang and Wang, Jian and Chen, Jingdong and Yang, Ming and others},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={14733--14744},
+  year={2025}
+}
+
+@article{luo2024skysensegpt,
+  title={Skysensegpt: A fine-grained instruction tuning dataset and model for remote sensing vision-language understanding},
+  author={Luo, Junwei and Pang, Zhen and Zhang, Yongjun and Wang, Tingzhu and Wang, Linlin and Dang, Bo and Lao, Jiangwei and Wang, Jian and Chen, Jingdong and Tan, Yihua and others},
+  journal={arXiv preprint arXiv:2406.10100},
+  year={2024}
+}
+```
