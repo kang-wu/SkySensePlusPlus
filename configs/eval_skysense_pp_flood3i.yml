@@ -4,8 +4,8 @@ task_attributes:
       few_shot_flood_segmentation:
         data_root_dir: 'eval_datasets/flood3i'
         data_txt: 'eval_datasets/flood3i/val.txt'
-        img_dir: 'eval_datasets/flood3i/images'
-        tgt_dir: 'eval_datasets/flood3i/targets'
+        img_dir: 'eval_datasets/flood3i/Images'
+        tgt_dir: 'eval_datasets/flood3i/Semantic_mask'
         num_shot: 1
         seq_len: 1
         npz_key: 'arr_0'

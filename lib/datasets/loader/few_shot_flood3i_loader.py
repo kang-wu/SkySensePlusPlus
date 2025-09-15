@@ -40,18 +40,20 @@ class FewShotFloodLoader(BaseDataset):
         self.cls2path = {}
         for i in test_list:
             i = i.strip()
+            if i == '':
+                continue
             img_path = i[:-3]
             cls = int(i[-2:])
             cls = int(cls)
             self.test_pairs.append(
-                {'hr_path': img_path.replace('.png', '.jpg'),
+                {'hr_path': img_path,
                  'class': cls,
-                 'tgt_path': img_path
+                 'tgt_path': img_path.replace('_', '_lab_', 1).replace('.jpg', '.png')
                  })
             if cls in self.cls2path.keys():
-                self.cls2path[cls].append({'hr_path': img_path.replace('.png', '.jpg'), 'tgt_path': img_path, 'class': cls})
+                self.cls2path[cls].append({'hr_path': img_path, 'tgt_path': img_path.replace('_', '_lab_', 1).replace('.jpg', '.png'), 'class': cls})
             else:
-                self.cls2path[cls] = [{'hr_path': img_path.replace('.png', '.jpg'), 'tgt_path': img_path, 'class': cls}]
+                self.cls2path[cls] = [{'hr_path': img_path, 'tgt_path': img_path.replace('_', '_lab_', 1).replace('.jpg', '.png'), 'class': cls}]
 
         self.seq_len = config.seq_len  # ts
         self.hr_size = config.image_size.hr
