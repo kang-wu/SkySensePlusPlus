@@ -14,20 +14,18 @@ from antmmf.modules.metrics import Metrics
 from antmmf.optimizer.combine_optimizers import CombinedOptimizer
 from antmmf.utils.distributed_utils import (broadcast_scalar, is_main_process)
 from antmmf.utils.early_stopping import EarlyStopping
-from antmmf.utils.general import clip_gradients, count_parameters, is_atorch_available, nullcontext
+from antmmf.utils.general import clip_gradients, count_parameters, nullcontext
 from antmmf.utils.timer import Timer
 from antmmf.trainers.base_trainer import BaseTrainer
 
 from lib.utils.utils import cancel_gradients_backbone, EMA
 from lib.utils.checkpoint import SegCheckpoint
 
-if is_atorch_available(raise_error=False, log=None):
+try:
     import atorch
-
-    try:
-        from atorch import amp
-    except ImportError:
-        pass
+    from atorch import amp
+except ImportError:
+    pass
 
 
 @registry.register_trainer("seg_trainer")
@@ -35,6 +33,8 @@ class SEGTrainer(BaseTrainer):
 
     def __init__(self, config):
         super().__init__(config)
+        self.enable_torch_amp=True
+        self.enable_atorch_amp=False
 
     def load(self, has_check_point=True):
         super().load(has_check_point)
@@ -397,5 +397,3 @@ class SEGTrainer(BaseTrainer):
             self.model.train()
 
         return report.dataset_name, meter
-
-
