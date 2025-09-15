@@ -5,9 +5,9 @@ This repository is the official implementation of the paper "SkySense++: A Seman
 ## 📢 Latest Updates
 
 🔥🔥🔥 Last Updated on 2025.09.15 🔥🔥🔥 
-- [2025.09.15] Add a [🌍 project page](https://zqcrafts.github.io/SkySense-O/project.html) and fix some bugs.
+- [2025.09.15] Add a [🌍 project page](https://zqcrafts.github.io/SkySense-O/project.html).
 - [2025.08.04] Our work has been published in [*Nature Machine Intelligence*](https://www.nature.com/articles/s42256-025-01078-8).
-- [2025.03.23] Code for preprocessing/pretraining/application and [model weights](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us)(access code:bkl3) for models has been uploaded.
+- [2025.03.23] Code for preprocessing/pretraining/application and [model weights](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us)(access code:bkl3) for models have been uploaded.
 - [2025.03.14] updated optical images of JL-16 dataset in [Huggingface](https://huggingface.co/datasets/KKKKKKang/JL-16).
 - [2025.03.12] updated sentinel-1 images and labels of JL-16 dataset  in [Zenodo](https://zenodo.org/records/15010418).
 - [2025.03.09] created repo in [Zenodo](https://zenodo.org/records/15010418), datasets are uploading.
@@ -223,7 +223,20 @@ step1. Clone [antmmf framework](https://github.com/alipay/Ant-Multi-Modal-Framew
 git clone https://github.com/alipay/Ant-Multi-Modal-Framework.git antmmf/
 ```
 
-step1. Download the flood-3i dataset at [here](https://drive.google.com/drive/folders/1FMAKf2sszoFKjq0UrUmSLnJDbwQSpfxR).
+step1. Download the flood-3i dataset (`Images.zip`/`Semantic_mask.zip` at [here](https://drive.google.com/drive/folders/1FMAKf2sszoFKjq0UrUmSLnJDbwQSpfxR), `val.txt` at [here](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us) (access code:bkl3).  Testing dataset should be organized as follows:
+```plain
+eval_datasets/
+└── flood3i/
+    ├── Images/
+    │   ├── 10165_0_2.jpg
+    │   ├── 10165_1_0.jpg
+    │   └── ...
+    ├── Semantic_mask/
+    │   ├── 10165_lab_0_2.png
+    │   ├── 10165_lab_1_0.png
+    │   └── ...
+    └── val.txt
+```
 
 step2. Using the above pretraining wieights or download the pretrained model weights [here](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us) (access code:bkl3).
 
