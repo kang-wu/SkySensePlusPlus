@@ -29,7 +29,6 @@ default_hooks = dict(
     logger=dict(interval=50, log_metric_by_epoch=False, type='LoggerHook'),
     param_scheduler=dict(type='ParamSchedulerHook'),
     sampler_seed=dict(type='DistSamplerSeedHook'),
-    testeval=dict(type='TestEvalLoopHook'),
     timer=dict(type='IterTimerHook'),
     visualization=dict(type='SegVisualizationHook'))
 default_scope = 'mmseg'
