@@ -4,9 +4,10 @@ This repository is the official implementation of the paper "SkySense++: A Seman
 
 ## 📢 Latest Updates
 
-🔥🔥🔥 Last Updated on 2025.08.04 🔥🔥🔥
-- [2025.08.04] Our work has been published in [*Nature Machine Intelligence*](https://www.nature.com/articles/s42256-025-01078-8). 
-- [2025.03.23] Code for data preprocessing, pretraining, and application has been uploaded.
+🔥🔥🔥 Last Updated on 2025.09.15 🔥🔥🔥 
+- [2025.09.15] Add a [🌍 project page](https://zqcrafts.github.io/SkySense-O/project.html) and fix some bugs.
+- [2025.08.04] Our work has been published in [*Nature Machine Intelligence*](https://www.nature.com/articles/s42256-025-01078-8).
+- [2025.03.23] Code for preprocessing/pretraining/application and [model weights](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us)(access code:bkl3) for models has been uploaded.
 - [2025.03.14] updated optical images of JL-16 dataset in [Huggingface](https://huggingface.co/datasets/KKKKKKang/JL-16).
 - [2025.03.12] updated sentinel-1 images and labels of JL-16 dataset  in [Zenodo](https://zenodo.org/records/15010418).
 - [2025.03.09] created repo in [Zenodo](https://zenodo.org/records/15010418), datasets are uploading.
@@ -126,8 +127,9 @@ To run our pretraining code, please install dependency packages. (Instalazation 
 torch==1.13.1
 atorch==0.1.3
 torchvision==0.14.1
-mmcv-full==2.1.0
-mmsegmentation==1.2.2
+mmcv-full==1.7.1
+mmsegmentation==0.30.0
+mmcls==0.25.0
 timm==0.6.13
 gdal==3.4.0
 scikit-image==0.19.3
@@ -284,8 +286,6 @@ The codes of this project is licensed under Apache 2.0(https://www.apache.org/li
 If you find our repo useful, please consider giving a star and citation:
 
 ```
-
-
 @article{wu2025semantic,
   author       = {Wu, Kang and Zhang, Yingying and Ru, Lixiang and Dang, Bo and Lao, Jiangwei and Yu, Lei and Luo, Junwei and Zhu, Zifan and Sun, Yue and Zhang, Jiahao and Zhu, Qi and Wang, Jian and Yang, Ming and Chen, Jingdong and Zhang, Yongjun and Li, Yansheng},
   title        = {A semantic‑enhanced multi‑modal remote sensing foundation model for Earth observation},
@@ -319,3 +319,6 @@ If you find our repo useful, please consider giving a star and citation:
   year={2024}
 }
 ```
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=kang-wu/SkySensePlusPlus&type=Date)](https://www.star-history.com/#kang-wu/SkySensePlusPlus&Date)
