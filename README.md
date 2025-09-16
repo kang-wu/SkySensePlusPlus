@@ -7,7 +7,7 @@ This repository is the official implementation of the paper "SkySense++: A Seman
 🔥🔥🔥 Last Updated on 2025.09.15 🔥🔥🔥 
 - [2025.09.15] Add a [🌍 project page](https://zqcrafts.github.io/SkySense-O/project.html).
 - [2025.08.04] Our work has been published in [*Nature Machine Intelligence*](https://www.nature.com/articles/s42256-025-01078-8).
-- [2025.03.23] Code for preprocessing/pretraining/application and [model weights](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us)(access code:bkl3) for models have been uploaded.
+- [2025.03.23] Code for preprocessing/pretraining/application and [model weights](https://www.notion.so/SkySense-Checkpoints-a7fcff6ce29a4647a08c7fe416910509?source=copy_link) for models have been uploaded.
 - [2025.03.14] updated optical images of JL-16 dataset in [Huggingface](https://huggingface.co/datasets/KKKKKKang/JL-16).
 - [2025.03.12] updated sentinel-1 images and labels of JL-16 dataset  in [Zenodo](https://zenodo.org/records/15010418).
 - [2025.03.09] created repo in [Zenodo](https://zenodo.org/records/15010418), datasets are uploading.
@@ -183,7 +183,7 @@ The `<dataset>_<train/val>.json` is used to read information for training and va
 ]
 ```
 
-Step3. Download the pretraining weights of SkySense [here](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us) (access code:bkl3) and move it to `pretrain/`
+Step3. Download the pretraining weights of SkySense [here](https://www.notion.so/SkySense-Checkpoints-a7fcff6ce29a4647a08c7fe416910509) and move it to `pretrain/`
 
 Step4. Run the pretrain code on 4 nodes (each node with 8 A100 gpus):
 
@@ -223,7 +223,7 @@ step1. Clone [antmmf framework](https://github.com/alipay/Ant-Multi-Modal-Framew
 git clone https://github.com/alipay/Ant-Multi-Modal-Framework.git antmmf/
 ```
 
-step1. Download the flood-3i dataset (`Images.zip`/`Semantic_mask.zip` at [here](https://drive.google.com/drive/folders/1FMAKf2sszoFKjq0UrUmSLnJDbwQSpfxR), `val.txt` at [here](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us) (access code:bkl3).  Testing dataset should be organized as follows:
+step1. Download the flood-3i dataset (`Images.zip`/`Semantic_mask.zip` at [here](https://drive.google.com/drive/folders/1FMAKf2sszoFKjq0UrUmSLnJDbwQSpfxR), `val.txt` at [here](https://www.notion.so/SkySense-Checkpoints-a7fcff6ce29a4647a08c7fe416910509).  Testing dataset should be organized as follows:
 ```plain
 eval_datasets/
 └── flood3i/
@@ -238,7 +238,7 @@ eval_datasets/
     └── val.txt
 ```
 
-step2. Using the above pretraining wieights or download the pretrained model weights [here](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us) (access code:bkl3).
+step2. Using the above pretraining wieights or download the pretrained model weights [here](https://www.notion.so/SkySense-Checkpoints-a7fcff6ce29a4647a08c7fe416910509).
 
 step3. Run the script for evaluating 1-shot performance on flood-3i:
 
@@ -270,9 +270,25 @@ scikit-image==0.19.3
 
 Step1. Install the mmsegmentation framework under the instrction in [here](https://mmsegmentation.readthedocs.io/en/latest/index.html)
 
-Step2. Download the evaluation datsets. We take  Atlantic dataset for deforestation segmentation as an example. Download the Atlantic dataset  at [here](https://github.com/davej23/attention-mechanism-unet).
+Step2. Download the evaluation datsets. We take  Atlantic dataset for deforestation segmentation as an example. Download the Atlantic dataset  at [here](https://github.com/davej23/attention-mechanism-unet). Spliting json files of evaluation framwork [here](https://www.notion.so/SkySense-Checkpoints-a7fcff6ce29a4647a08c7fe416910509).
+```
+../rs_datasets/deforestation_atlantic/
+--
+├── deforestation_atlantic_test.json
+├── deforestation_atlantic_train.json
+├── deforestation_atlantic_val.json
+├── Test/
+│   ├── image/
+│   └── label/
+├── Training/
+│   ├── image/
+│   └── label/
+└── Validation/
+    ├── image/
+    └── label/
+```
 
-Step3. Use your pretrained model weights or download the model weights: [here](https://www.yuque.com/thinson/research/vpisiuswzbnriwvb?singleDoc=&language=en-us) (access code:bkl3)
+Step3. Use your pretrained model weights or download the model weights: [here](https://www.notion.so/SkySense-Checkpoints-a7fcff6ce29a4647a08c7fe416910509)
 
 Step4. Run the finetuning script. We take the Atlantic dataset as an example:
 
