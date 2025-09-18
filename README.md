@@ -309,7 +309,7 @@ This projects are mainly built on the following projects:
 
 ## License
 
-The codes of this project is licensed under Apache 2.0(https://www.apache.org/licenses/LICENSE-2.0.html).
+The pre-trained model weight and pre-training code are only available for the non-commercial research. For any commercial use or cooperation, please contact Yansheng Li at Wuhan University (e-mail: yansheng.li@whu.edu.cn).
 
 ## Citation
 If you find our repo useful, please consider giving a star and citation:
